@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Number Guessing Game</h1>
+        {% if feedback %}
+        <p>{{ feedback }}</p>
+        {% else %}
+        <p>I have selected a number between 1 and 100. Can you guess what it is?</p>
+        {% endif %}
+        <form action="/guess" method="POST">
+            <input type="number" name="guess" placeholder="Enter your guess" required>
+            <button type="submit">Guess</button>
+        </form>
+        <p>Attempts: <span id="attempts">{{ number_of_attempts }}</span></p>
+    </div>
+
+    <script>
+        const attemptsSpan = document.getElementById('attempts');
+        attemptsSpan.textContent = {{ number_of_attempts }};
+    </script>
+</body>
+</html>
